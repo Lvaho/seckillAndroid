@@ -12,9 +12,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zjc.seckill.R;
-import zjc.seckill.pojo.ResponseBody;
-import zjc.seckill.service.LoginService;
-import zjc.seckill.service.imp.LoginServiceImp;
+import zjc.seckill.pojo.RespBean;
+import zjc.seckill.service.IUserService;
+import zjc.seckill.service.imp.UserServiceImpl;
 import zjc.seckill.util.MyApplication;
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.register_button)
     Button registerButton;
     //代理接口
-    private LoginService loginService;
+    private IUserService IUserService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //回调函数loginCallback
-    public void loginCallback(ResponseBody responseBody) {
-        MyApplication.setObj(responseBody.getResponseObj());
+    public void loginCallback(RespBean respBean) {
+        MyApplication.setObj(respBean.getObj());
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
         // 关闭当前 LoginActivity 活动
@@ -57,10 +57,9 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.login_button)
     public void onClickForLogin() {
-        //构造代理接口
-        loginService = new LoginServiceImp(LoginActivity.this);
-        //异步网络访问，登录验证
-        loginService.doLogin(loginMobile.getText().toString(), loginPassword.getText().toString());
+        IUserService = new UserServiceImpl(LoginActivity.this);
+        //调用UserService登录接口来实现业务
+        IUserService.doLogin(loginMobile.getText().toString(), loginPassword.getText().toString());
         //Toast.makeText(LoginActivity.this,loginUser.getUserName(),Toast.LENGTH_LONG).show();
     }
 
@@ -68,6 +67,5 @@ public class LoginActivity extends AppCompatActivity {
     public void onClickForRegister() {
         Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
         startActivity(intent);
-        finish();
     }
 }

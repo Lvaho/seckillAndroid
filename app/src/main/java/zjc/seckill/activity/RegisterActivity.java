@@ -13,8 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zjc.seckill.R;
-import zjc.seckill.service.RegisterService;
-import zjc.seckill.service.imp.RegisterServiceImp;
+import zjc.seckill.service.imp.UserServiceImpl;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -32,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button registerButton;
 
     //服务代理接口
-    private RegisterService registerService;
+    private UserServiceImpl userService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +61,8 @@ public class RegisterActivity extends AppCompatActivity {
     @OnClick(R.id.register_button)
     public void onClick() {
         //构造服务代理类
-        registerService=new RegisterServiceImp(RegisterActivity.this);
+        userService=new UserServiceImpl(RegisterActivity.this);
         //异步网络访问
-        registerService.doRegister(registerIdentity.getText().toString(),registerMobile.getText().toString(),registerNickname.getText().toString(),registerPassword.getText().toString());
+        userService.doRegister(registerIdentity.getText().toString(),registerMobile.getText().toString(),registerNickname.getText().toString(),registerPassword.getText().toString());
     }
 }

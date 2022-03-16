@@ -6,7 +6,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 public class MyHttpUtil {
-    public static String host="http://web.keepwork.xyz:8081";       //web服务器Tomcat的ip地址
     //用于向服务器发送Post请求
     public static void sendOkhttpPostRequest(String address, RequestBody requestBody, Callback callback){
         OkHttpClient client=new OkHttpClient();
