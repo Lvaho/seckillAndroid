@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
-
-    <TextView
-        android:id="@+id/tv1"
+    tools:context=".activity.MainActivity"
+    android:orientation="vertical"
+    android:background="#ffffff">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:id="@+id/main_fl"
+        android:layout_weight="1" />
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="登录成功！"/>
+        app:cardElevation="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardBackgroundColor="@color/white">
+        <include layout="@layout/activity_under_bar"/>
+    </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/bt_tc"
-        android:layout_below="@+id/tv1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="退出"/>
-
-</RelativeLayout>
+</LinearLayout>
