@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/white">
+    <!--    第一个小图标-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:id="@+id/tab_map_ll"
+        android:gravity="center">
+        <ImageButton
+            android:layout_width="23dp"
+            android:layout_height="35dp"
+            android:id="@+id/tab_map_ib"
+            android:background="#00000000"
+            android:scaleType="centerInside"
+            android:clickable="false"
+            android:src="@drawable/map_y">
+
+        </ImageButton>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab_map_tv"
+            android:textSize="12sp"
+            android:text="余额"
+            android:textColor="@color/red">
+
+        </TextView>
+    </LinearLayout>
+    <!--第二个图标-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:id="@+id/tab_message_ll"
+        android:gravity="center">
+        <ImageButton
+            android:layout_width="23dp"
+            android:layout_height="35dp"
+            android:id="@+id/tab_message_ib"
+            android:background="#00000000"
+            android:scaleType="centerInside"
+            android:clickable="false"
+            android:src="@drawable/message_n">
+
+        </ImageButton>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab_message_tv"
+            android:textSize="12sp"
+            android:text="消息"
+            android:textColor="#8D9090">
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:id="@+id/tab_carme_ll"
+        android:gravity="center">
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tab_carme_ib"
+            android:background="#00000000"
+            android:scaleType="centerInside"
+            android:clickable="false"
+            android:src="@drawable/carmer_n">
+
+        </ImageButton>
+    </LinearLayout>
+    <!--    第三个图标-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:id="@+id/tab_task_ll"
+        android:gravity="center">
+        <ImageButton
+            android:layout_width="23dp"
+            android:layout_height="35dp"
+            android:id="@+id/tab_task_ib"
+            android:background="#00000000"
+            android:scaleType="centerInside"
+            android:clickable="false"
+            android:src="@drawable/task_n">
+
+        </ImageButton>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab_task_tv"
+            android:textSize="12sp"
+            android:text="秒杀"
+            android:textColor="#8D9090">
+
+        </TextView>
+    </LinearLayout>
+    <!--    第四个图标-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:id="@+id/tab_mine_ll"
+        android:gravity="center">
+        <ImageButton
+            android:layout_width="23dp"
+            android:layout_height="35dp"
+            android:id="@+id/tab_mine_ib"
+            android:background="#00000000"
+            android:scaleType="centerInside"
+            android:clickable="false"
+            android:src="@drawable/mine_n">
+
+        </ImageButton>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab_mine_tv"
+            android:textSize="12sp"
+            android:text="我的"
+            android:textColor="#8D9090">
+
+        </TextView>
+    </LinearLayout>
+</LinearLayout>
