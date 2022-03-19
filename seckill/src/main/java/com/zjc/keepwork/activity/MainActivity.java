@@ -1,10 +1,12 @@
 package com.zjc.keepwork.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import com.zjc.keepwork.under_bar_fragment.MineFragment;
 import com.zjc.keepwork.under_bar_fragment.SeckillFragment;
 
 import butterknife.ButterKnife;
+import cn.wildfire.chat.kit.qrcode.ScanQRCodeActivity;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -52,15 +55,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tab_task_tv;
     private TextView tab_mine_tv;
 
-
+    private static final int REQUEST_CODE_SCAN_QR_CODE = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         requestPower();
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initControls();
         initControlsEvent();
+        loadFragment(mainFragment);
     }
 
 
@@ -145,7 +150,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tab_carme_ll:
                 //takePhoto();
-                //openCamera();
+                Intent intent = new Intent(this, ScanQRCodeActivity.class);
+                startActivity(intent);
                 break;
         }
     }

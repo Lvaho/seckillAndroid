@@ -14,6 +14,7 @@ public class MyApplication extends Application {
     private static String obj="";    //登录用户的编号
 
 
+
     public static Context getContext() {
         return context;
     }
@@ -54,4 +55,26 @@ public class MyApplication extends Application {
         editor.apply();
     }
 
+    //定位相关
+    private static String lat="0";
+    private static String lot="0";
+    private static String city="绍兴市";
+    public static String getCity() {
+        return city;
+    }
+    public static void setCity(String city) {
+        MyApplication.city = city;
+    }
+    public static String getLat() {
+        return lat;
+    }
+    public static void setLat(String lat) {
+        MyApplication.lat = lat;
+    }
+    public static String getLot() {
+        return lot;
+    }
+    public static void setLot(String lot) {
+        MyApplication.lot = lot;
+    }
 }

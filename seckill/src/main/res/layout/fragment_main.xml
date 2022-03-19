@@ -1,14 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".under_bar_fragment.MainFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".under_bar_fragment.MainFragment"
+    android:background="@color/gray"
+    android:orientation="vertical">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/customize_bar_rl"
+        android:layout_height="40dp"
+        android:background="@color/red">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/task_back_ll"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:background="@drawable/dingwei" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:text="绍兴市"
+                android:id="@+id/main_city"
+                android:textColor="@color/white"
+                android:textSize="15sp"/>
+            <RelativeLayout
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/search"
+                    android:id="@+id/main_search">
+                </ImageView>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp">
+                <ImageView
+                    android:id="@+id/main_team"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/team">
+                </ImageView>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp">
+                <ImageView
+                    android:id="@+id/qrcode_scan"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/scancide">
+                </ImageView>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <com.xuexiang.xui.widget.XUIObservableScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="vertical">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    app:cardBackgroundColor="@color/white">
+                    <com.youth.banner.Banner
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imageBanner">
+                    </com.youth.banner.Banner>
+                    <com.xuexiang.xui.widget.textview.MarqueeTextView
+                        android:id="@+id/tv_marquee"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="#E1E1E1dd"
+                        android:layout_gravity="bottom"/>
+                </androidx.cardview.widget.CardView>
 
-</FrameLayout>
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已经到底了哦~"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:layout_gravity="center">
+
+            </TextView>
+        </LinearLayout>
+    </com.xuexiang.xui.widget.XUIObservableScrollView>
+
+
+</LinearLayout>
