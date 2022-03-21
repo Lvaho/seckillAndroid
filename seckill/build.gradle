@@ -65,5 +65,8 @@ dependencies {
     //XPage页面框架
     implementation 'com.github.xuexiangjys.XPage:xpage-lib:3.0.3'
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.makeramen:roundedimageview:2.2.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
 
 }

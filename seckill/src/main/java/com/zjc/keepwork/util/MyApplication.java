@@ -77,4 +77,30 @@ public class MyApplication extends Application {
     public static void setLot(String lot) {
         MyApplication.lot = lot;
     }
+    //个人界面相关
+    private static String isPush="true";
+    private static String isMes="true";
+    public static String getIsPush() {
+        return isPush;
+    }
+    public static void setIsPush(String isPush) {
+        MyApplication.isPush = isPush;
+    }
+    public static String getIsMes() {
+        return isMes;
+    }
+    public static void setIsMes(String isMes) {
+        MyApplication.isMes = isMes;
+    }
+    //用户名
+    private static String user_name="";
+    public static String getUser_name() {
+        return user_name;
+    }
+
+    public static void setUser_name(String user_name) {
+        MyApplication.user_name = user_name;
+        editor.putString("user_name",user_name);
+        editor.apply();
+    }
 }

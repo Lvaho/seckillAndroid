@@ -101,7 +101,11 @@
 
             </FrameLayout>
 
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:id="@+id/main_fl_fun">
+            </androidx.recyclerview.widget.RecyclerView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

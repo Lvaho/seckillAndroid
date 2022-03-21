@@ -1,6 +1,7 @@
 package com.zjc.keepwork.under_bar_fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,16 +11,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.bumptech.glide.Glide;
+import com.xuexiang.xui.widget.textview.MarqueeTextView;
+import com.xuexiang.xui.widget.textview.marqueen.DisplayEntity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 import com.zjc.keepwork.R;
+import com.zjc.keepwork.activity.DepositActivity;
+import com.zjc.keepwork.activity.DepositDetailActivity;
 import com.zjc.keepwork.activity.MainActivity;
+import com.zjc.keepwork.adapter.FunctionAdapter;
+import com.zjc.keepwork.adapter.pojo.Function;
 import com.zjc.keepwork.util.MyApplication;
 
 import java.text.SimpleDateFormat;
@@ -30,6 +39,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+
+import com.zjc.keepwork.activity.CommunicationActivity;
 
 
 public class MainFragment extends Fragment implements AMapLocationListener {
@@ -44,9 +55,15 @@ public class MainFragment extends Fragment implements AMapLocationListener {
     @BindView(R.id.main_city)
     TextView main_city;
     //定位需要的声明
+    @BindView(R.id.tv_marquee)
+    MarqueeTextView tv_marquee;
+    @BindView(R.id.main_fl_fun)
+    RecyclerView main_fl_fun;
+    private FunctionAdapter functionAdapter;
     private AMapLocationClient mLocationClient = null;//定位发起端
     private AMapLocationClientOption mLocationOption = null;//定位参数
     Unbinder unbinder;
+    private SeckillFragment seckillFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +79,36 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         unbinder= ButterKnife.bind(this,view);
         initBanner();
         initLoc();
+        initMarqueeTextView();
+        List<Function> list=initFun();
+        functionAdapter=new FunctionAdapter(R.layout.fun_viewholder,list);
+        functionAdapter.setOnItemClickListener(itemId -> {
+            //我的余额启动DepositActivity
+            if ("5".equals(itemId)){
+                Intent intent=new Intent(getActivity(), DepositActivity.class);
+                startActivity(intent);
+            }
+            //秒杀活动直接跳转至seckillfragment
+            if ("6".equals(itemId)){
+                MainActivity mainActivity= (MainActivity) getActivity();
+                seckillFragment=new SeckillFragment(mainActivity);
+                mainActivity.resetImageAndTextColor();
+                mainActivity.loadFragment(seckillFragment);
+            }
+            //打开明细查询
+            if ("7".equals(itemId)){
+                Intent intent=new Intent(getActivity(), DepositDetailActivity.class);
+                startActivity(intent);
+            }
+            //打开与客服的聊天界面
+            if ("8".equals(itemId)){
+                Intent intent=new Intent(getActivity(), CommunicationActivity.class);
+                startActivity(intent);
+            }
+        });
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),4);
+        main_fl_fun.setAdapter(functionAdapter);
+        main_fl_fun.setLayoutManager(gridLayoutManager);
         return view;
     }
     public void initBanner(){
@@ -107,7 +154,28 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         //启动定位
         mLocationClient.startLocation();
     }
-
+    public void initMarqueeTextView(){
+        tv_marquee.bringToFront();
+        List<String> list=new ArrayList<>();
+        list.add("三湘银行（BANK OF SANXIANG）是湖南省和中部地区首家民营银行，由三一集团、汉森制药等9家民营企业作为发起人股东共同发起设立。于2016年12月26日正式开业，注册资本30亿元，注册地湖南长沙。");
+        tv_marquee.setOnMarqueeListener(new MarqueeTextView.OnMarqueeListener() {
+            @Override
+            public DisplayEntity onStartMarquee(DisplayEntity displayMsg, int index) {
+                if (displayMsg.toString().equals("离离原上草，一岁一枯荣。")) {
+                    return null;
+                } else {
+                    //ToastUtils.toast("开始滚动：" + displayMsg.toString());
+                    return displayMsg;
+                }
+            }
+            @Override
+            public List<DisplayEntity> onMarqueeFinished(List<DisplayEntity> displayDatas) {
+                //ToastUtils.toast("一轮滚动完毕！");
+                return displayDatas;
+            }
+        });
+        tv_marquee.startSimpleRoll(list);
+    }
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
         if (aMapLocation != null) {
@@ -148,5 +216,25 @@ public class MainFragment extends Fragment implements AMapLocationListener {
                     + aMapLocation.getErrorCode() + ", errInfo:"
                     + aMapLocation.getErrorInfo());
         }
+    }
+    public List<Function>  initFun(){
+        List list=new ArrayList();
+//        Function function=new Function(1,"活动打卡");
+//        Function function1=new Function(2,"活动公示");
+//        Function function2=new Function(3,"志愿团队");
+//        Function function3=new Function(4,"排行榜");
+        Function function4=new Function(5,"我的余额");
+        Function function5=new Function(6,"秒杀活动");
+        Function function6=new Function(7,"明细查询");
+        Function function7=new Function(8,"联系客服");
+//        list.add(function);
+//        list.add(function1);
+//        list.add(function2);
+//        list.add(function3);
+        list.add(function4);
+        list.add(function5);
+        list.add(function6);
+        list.add(function7);
+        return list;
     }
 }
