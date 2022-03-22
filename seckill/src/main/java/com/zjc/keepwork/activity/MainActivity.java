@@ -19,11 +19,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.zjc.keepwork.R;
-import com.zjc.keepwork.under_bar_fragment.DepositFragment;
-import com.zjc.keepwork.under_bar_fragment.MainFragment;
-import com.zjc.keepwork.under_bar_fragment.MessageFragment;
-import com.zjc.keepwork.under_bar_fragment.MineFragment;
-import com.zjc.keepwork.under_bar_fragment.SeckillFragment;
+import com.zjc.keepwork.fragment.under_bar_fragment.DepositFragment;
+import com.zjc.keepwork.fragment.under_bar_fragment.MainFragment;
+import com.zjc.keepwork.fragment.under_bar_fragment.MessageFragment;
+import com.zjc.keepwork.fragment.under_bar_fragment.MineFragment;
+import com.zjc.keepwork.fragment.under_bar_fragment.SeckillFragment;
 
 import butterknife.ButterKnife;
 import cn.wildfire.chat.kit.qrcode.ScanQRCodeActivity;

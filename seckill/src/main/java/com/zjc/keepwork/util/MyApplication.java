@@ -8,28 +8,26 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 public class MyApplication extends Application {
+
     private static SharedPreferences pref;  //共享偏好对象
     private static SharedPreferences.Editor editor;    //共享偏好编辑器对象
+
+
     private static Context context;   //上下文环境变量，用于多个活动之间的变量共享
-    private static String obj="";    //登录用户的编号
-
-
-
     public static Context getContext() {
         return context;
     }
-
     public static void setContext(Context context) {
         MyApplication.context = context;
     }
-
-    public static String getObj() {
-        return obj;
+    //cookie
+    private static String cookie="";    //用户登录之后的cookie
+    public static String getCookie() {
+        return cookie;
     }
-
-    public static void setObj(String obj) {
-        MyApplication.obj = obj;
-        editor.putString("obj",obj);
+    public static void setCookie(String obj) {
+        MyApplication.cookie = obj;
+        editor.putString("cookie",obj);
         editor.apply();
     }
 
@@ -40,7 +38,7 @@ public class MyApplication extends Application {
         pref= PreferenceManager.getDefaultSharedPreferences(context);
         editor=pref.edit();
         editor.apply();
-        obj=pref.getString("obj","");
+        cookie=pref.getString("cookie","");
     }
 
     //用于在非UI线程类okhttp中显示Toast信息
@@ -97,10 +95,20 @@ public class MyApplication extends Application {
     public static String getUser_name() {
         return user_name;
     }
-
+    //登录用户编号
+    private static String user_id="";
     public static void setUser_name(String user_name) {
         MyApplication.user_name = user_name;
         editor.putString("user_name",user_name);
+        editor.apply();
+    }
+    public static String getUser_id() {
+        return user_id;
+    }
+
+    public static void setUser_id(String user_id) {
+        MyApplication.user_id = user_id;
+        editor.putString("user_id",user_id);
         editor.apply();
     }
 }

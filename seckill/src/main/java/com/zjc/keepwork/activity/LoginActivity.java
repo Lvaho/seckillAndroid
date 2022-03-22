@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //回调函数loginCallback
     public void loginCallback(RespBean respBean) {
-        MyApplication.setObj(respBean.getObj());
+        MyApplication.setCookie(respBean.getObj().toString());
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
         // 关闭当前 LoginActivity 活动
@@ -56,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, responseMessage, Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
     @OnClick(R.id.login_button)

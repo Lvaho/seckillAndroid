@@ -1,4 +1,4 @@
-package com.zjc.keepwork.under_bar_fragment;
+package com.zjc.keepwork.fragment.under_bar_fragment;
 
 import android.content.Context;
 import android.content.Intent;

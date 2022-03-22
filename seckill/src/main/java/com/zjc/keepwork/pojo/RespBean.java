@@ -3,7 +3,7 @@ package com.zjc.keepwork.pojo;
 public class RespBean {
     private Integer Code;
     private String Message;
-    private  String Obj;
+    private  Object Obj;
 
     public Integer getCode() {
         return Code;
@@ -21,7 +21,7 @@ public class RespBean {
         this.Message = message;
     }
 
-    public String getObj() {
+    public Object getObj() {
         return Obj;
     }
 

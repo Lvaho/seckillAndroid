@@ -1,4 +1,4 @@
-package com.zjc.keepwork.under_bar_fragment;
+package com.zjc.keepwork.fragment.under_bar_fragment;
 
 import androidx.fragment.app.Fragment;
 

@@ -1,38 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".under_bar_fragment.DepositFragment">
-
-    <ImageView
-        android:layout_width="106dp"
-        android:layout_height="104dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="400px"
-        android:src="@drawable/money" />
-    <TextView
-        android:layout_width="wrap_content"
+    tools:context=".fragment.under_bar_fragment.DepositFragment"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/customize_bar_rl"
+        android:layout_height="40dp"
+        android:background="@color/red"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/back1"
+                android:id="@+id/deposit_back"/>
+            <TextView
+                android:layout_width="333dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="我的余额"
+                android:textSize="15dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="你的余额"
-        android:layout_gravity="center"
-        android:textSize="60px"
-        android:layout_marginBottom="200px"/>
-    <TextView
-        android:layout_width="wrap_content"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="400px"
+            android:layout_height="400px"
+            android:src="@drawable/money" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="￥999"
-        android:textSize="50dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20px"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="-60dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的零钱"
+            android:textSize="60px"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="充值"/>
+        android:gravity="center">
 
-
-
-
-</FrameLayout>
+        <TextView
+            android:id="@+id/deposit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥999"
+            android:textSize="60px" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="充值"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="明细"/>
+    </RelativeLayout>
+</LinearLayout>

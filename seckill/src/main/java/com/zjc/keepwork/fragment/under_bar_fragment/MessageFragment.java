@@ -1,13 +1,17 @@
-package com.zjc.keepwork.under_bar_fragment;
+package com.zjc.keepwork.fragment.under_bar_fragment;
 
 import androidx.fragment.app.Fragment;
 
 import com.zjc.keepwork.activity.MainActivity;
 
 
-public class SeckillFragment extends Fragment {
+
+
+public class MessageFragment extends Fragment {
     MainActivity mainActivity;
-    public SeckillFragment(MainActivity mainActivity) {
+
+
+    public MessageFragment(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
     }
 

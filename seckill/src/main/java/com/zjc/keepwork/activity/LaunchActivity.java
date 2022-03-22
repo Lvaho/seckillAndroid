@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.zjc.keepwork.R;
 import com.zjc.keepwork.util.MyApplication;
 
 
@@ -19,8 +20,9 @@ public class LaunchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        //利用MyApplication获取已登录用户编号user_id
-        final String obj= MyApplication.getObj();
+        setContentView(R.layout.activity_launch);
+        //利用MyApplication获取已登录cookie
+        final String cookie= MyApplication.getCookie();
 
         //开启一个独立的线程Handler，延时2秒钟（2000毫秒）
         Handler handler=new Handler();
@@ -32,7 +34,7 @@ public class LaunchActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent intent;
-                        if (TextUtils.isEmpty(obj)){
+                        if (TextUtils.isEmpty(cookie)){
                             intent=new Intent(LaunchActivity.this,LoginActivity.class);
                             Toast.makeText(LaunchActivity.this,"请先登录",Toast.LENGTH_LONG).show();
                         }else{
