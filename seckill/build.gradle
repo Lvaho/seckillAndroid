@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.zjc.keepwork"
-        minSdkVersion 29
+        minSdkVersion 27
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
@@ -68,5 +68,8 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    api 'com.alipay.sdk:alipaysdk-android:+@aar'
+    compile 'com.android.support:support-v4:28.0.0'
+    compile "com.android.support:appcompat-v7:28.0.0"
 
 }

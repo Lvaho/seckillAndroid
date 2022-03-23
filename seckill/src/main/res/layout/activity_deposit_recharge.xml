@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.under_bar_fragment.DepositFragment"
+    tools:context=".activity.DepositRechargeActivity"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
                 android:layout_width="333dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="我的余额"
+                android:text="余额充值"
                 android:textSize="15dp"
                 android:textColor="@color/white"/>
         </LinearLayout>
@@ -36,55 +37,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
-        <ImageView
-            android:layout_width="400px"
-            android:layout_height="400px"
-            android:src="@drawable/money" />
+        <EditText
+            android:id="@+id/phonenumber"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/edittext1"
+            android:ems="19"
+            android:hint="请输入要充值的金额（单位：元）"
+            android:inputType="phone"
+            android:padding="1dp"
+            android:textSize="12sp" />
+
     </RelativeLayout>
     <RelativeLayout
-        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <Button
+            android:id="@+id/CallAliPay_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定并唤起支付宝支付"/>
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="我的零钱"
-            android:textSize="60px"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/deposit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="￥999"
-            android:textSize="60px" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/recharge_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="充值" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="明细"/>
+            android:text="金额到账可能存在10-15分钟延迟，如有疑问可询问客服"/>
     </RelativeLayout>
 </LinearLayout>

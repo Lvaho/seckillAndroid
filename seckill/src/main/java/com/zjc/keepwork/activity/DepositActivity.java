@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ public class DepositActivity extends AppCompatActivity {
     ImageView user_deposit_back;
     @BindView(R.id.deposit)
     TextView deposit;
+    @BindView(R.id.recharge_button)
+    Button recharge_button;
     IUserService userService;
     Unbinder unbinder;
     @Override
@@ -43,16 +46,20 @@ public class DepositActivity extends AppCompatActivity {
         userService.findUserByCookie();
     }
 
-    @OnClick({R.id.deposit_back})
+    @OnClick({R.id.deposit_back,R.id.recharge_button})
     public void viewOnclick(View view){
         switch (view.getId()){
             case R.id.deposit_back:
                 finish();
                 break;
+            case R.id.recharge_button:
+                Intent intent = new Intent(DepositActivity.this, DepositRechargeActivity.class);
+                startActivity(intent);
         }
     }
     //回调函数loginCallback
     public void depositCallback(DepositVo depositVo) {
         deposit.setText("￥"+depositVo.getDeposit().toString());
     }
+
 }
