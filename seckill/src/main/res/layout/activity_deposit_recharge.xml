@@ -22,7 +22,7 @@
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:src="@drawable/back1"
-                android:id="@+id/deposit_back"/>
+                android:id="@+id/deposit_recharge_back"/>
             <TextView
                 android:layout_width="333dp"
                 android:layout_height="match_parent"

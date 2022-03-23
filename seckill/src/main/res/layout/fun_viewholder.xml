@@ -17,9 +17,7 @@
         <com.makeramen.roundedimageview.RoundedImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/img_fun"
-            >
-
+            android:id="@+id/img_fun">
         </com.makeramen.roundedimageview.RoundedImageView>
 
     </androidx.cardview.widget.CardView>

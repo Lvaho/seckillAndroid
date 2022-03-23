@@ -23,6 +23,7 @@ import com.zjc.keepwork.R;
 import com.zjc.keepwork.activity.DepositActivity;
 import com.zjc.keepwork.activity.LaunchActivity;
 import com.zjc.keepwork.activity.MainActivity;
+import com.zjc.keepwork.activity.SetPasswordActivity;
 import com.zjc.keepwork.activity.UserDetailActivity;
 import com.zjc.keepwork.util.MyApplication;
 
@@ -106,7 +107,7 @@ public class MineFragment extends Fragment {
                 logout();
                 break;
             case R.id.change_password_ll:
-                //toSetPassword();
+                toSetPassword();
                 break;
             case R.id.change_head_ll:
                 //changeHead();
@@ -119,6 +120,13 @@ public class MineFragment extends Fragment {
                 break;
         }
     }
+
+    public void toSetPassword(){
+        Intent intent=new Intent(MyApplication.getContext(), SetPasswordActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
     //退出登录
     public void logout(){
         MyApplication.setCookie("");

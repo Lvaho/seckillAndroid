@@ -11,24 +11,31 @@
         android:layout_height="40dp"
         android:background="@color/red"
         android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
+
             <ImageView
+                android:id="@+id/deposit_back"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:src="@drawable/back1"
-                android:id="@+id/deposit_back"/>
+                android:src="@drawable/back1" />
+
             <TextView
-                android:layout_width="333dp"
+                android:layout_width="300dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="我的余额"
+                android:textColor="@color/white"
                 android:textSize="15dp"
-                android:textColor="@color/white"/>
+                />
         </LinearLayout>
     </RelativeLayout>
     <RelativeLayout
@@ -39,7 +46,8 @@
         <ImageView
             android:layout_width="400px"
             android:layout_height="400px"
-            android:src="@drawable/money" />
+            android:src="@drawable/money"
+            />
     </RelativeLayout>
     <RelativeLayout
         android:layout_marginTop="20dp"
@@ -77,14 +85,17 @@
             android:layout_height="wrap_content"
             android:text="充值" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
+
         <Button
+            android:id="@+id/refresh_deposit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="明细"/>
+            android:text="刷新余额" />
     </RelativeLayout>
 </LinearLayout>

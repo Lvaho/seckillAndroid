@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zjc.keepwork.R;
 import com.zjc.keepwork.pojo.DepositVo;
@@ -33,6 +34,8 @@ public class DepositActivity extends AppCompatActivity {
     TextView deposit;
     @BindView(R.id.recharge_button)
     Button recharge_button;
+    @BindView(R.id.refresh_deposit_button)
+    Button refresh_deposit_button;
     IDepositService depositService;
     Unbinder unbinder;
     @Override
@@ -48,7 +51,7 @@ public class DepositActivity extends AppCompatActivity {
        depositService.findDepositByCookie();
     }
 
-    @OnClick({R.id.deposit_back,R.id.recharge_button})
+    @OnClick({R.id.deposit_back,R.id.recharge_button,R.id.refresh_deposit_button})
     public void viewOnclick(View view){
         switch (view.getId()){
             case R.id.deposit_back:
@@ -57,6 +60,11 @@ public class DepositActivity extends AppCompatActivity {
             case R.id.recharge_button:
                 Intent intent = new Intent(DepositActivity.this, DepositRechargeActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.refresh_deposit_button:
+                Toast.makeText(this, "余额刷新中", Toast.LENGTH_SHORT).show();
+                initDeposit();
+                break;
         }
     }
     //回调函数loginCallback

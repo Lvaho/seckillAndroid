@@ -22,14 +22,38 @@ public class FunctionAdapter extends BaseQuickAdapter<Function, BaseViewHolder> 
         RoundedImageView view = helper.getView(R.id.img_fun);
         if (1==item.getPos()){
             helper.setBackgroundRes(R.id.img_fun,R.drawable.fun1);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClickListener(String.valueOf(item.getPos()));
+                }
+            });
         }else if (2==item.getPos()){
             helper.setBackgroundRes(R.id.img_fun,R.drawable.fun2);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClickListener(String.valueOf(item.getPos()));
+                }
+            });
         }
         else if (3==item.getPos()){
             helper.setBackgroundRes(R.id.img_fun,R.drawable.fun3);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClickListener(String.valueOf(item.getPos()));
+                }
+            });
         }
         else if (4==item.getPos()){
             helper.setBackgroundRes(R.id.img_fun,R.drawable.fun4);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClickListener(String.valueOf(item.getPos()));
+                }
+            });
         }
         else if (5==item.getPos()){
             helper.setBackgroundRes(R.id.img_fun,R.drawable.fun5);

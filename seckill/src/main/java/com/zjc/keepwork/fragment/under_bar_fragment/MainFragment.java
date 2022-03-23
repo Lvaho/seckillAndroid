@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amap.api.location.AMapLocation;
@@ -64,6 +65,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
     private AMapLocationClientOption mLocationOption = null;//定位参数
     Unbinder unbinder;
     private SeckillFragment seckillFragment;
+    private MineFragment mineFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,10 +97,12 @@ public class MainFragment extends Fragment implements AMapLocationListener {
                 mainActivity.resetImageAndTextColor();
                 mainActivity.loadFragment(seckillFragment);
             }
-            //打开明细查询
+            //打开个人中心
             if ("7".equals(itemId)){
-                Intent intent=new Intent(getActivity(), DepositDetailActivity.class);
-                startActivity(intent);
+                MainActivity mainActivity= (MainActivity) getActivity();
+                mineFragment=new MineFragment(mainActivity);
+                mainActivity.resetImageAndTextColor();
+                mainActivity.loadFragment(mineFragment);
             }
             //打开与客服的聊天界面
             if ("8".equals(itemId)){
@@ -225,7 +229,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
 //        Function function3=new Function(4,"排行榜");
         Function function4=new Function(5,"我的余额");
         Function function5=new Function(6,"秒杀活动");
-        Function function6=new Function(7,"明细查询");
+        Function function6=new Function(7,"个人中心");
         Function function7=new Function(8,"联系客服");
 //        list.add(function);
 //        list.add(function1);
