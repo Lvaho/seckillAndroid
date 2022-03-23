@@ -90,38 +90,5 @@ public class UserServiceImpl implements IUserService {
         });
     }
 
-    @Override
-    public void findUserByCookie() {
-        OkHttpClient okHttpClient = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(UrlUtil.GETDEPOSIT_URL)
-                .addHeader("Cookie"," userTicket="+MyApplication.getCookie())
-                .get()
-                .build();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.i("zjc","请求失败");
-            }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.i("zjc","请求成功");
-                RespBean respBean = ResponseUtil.dealresponse(response.body().string(),RespBean.class);
-                if (respBean.getCode()==200){
-                    DepositVo depositVo = (DepositVo) ResponseUtil.dealresponse(respBean.getObj().toString(), DepositVo.class);
-                    depositActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            depositActivity.depositCallback(depositVo);
-                        }
-                    });
-                }else {
-                    Log.i("zjc","出现问题");
-                }
-            }
-        });
-
-    }
 }

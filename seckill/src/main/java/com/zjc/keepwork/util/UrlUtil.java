@@ -5,6 +5,7 @@ public class UrlUtil {
     public final static String HEAD = "http://web.keepwork.xyz:8081";//请求头
     public final static String LOGIN_URL = HEAD+"/login/doLogin";//登录
     public final static String REGISTER_URL = HEAD+"/user/doRegister";//注册
-    public final static String GETDEPOSIT_URL =HEAD+"/deposit/getDeposit";//获取账户余额
+    public final static String GET_DEPOSIT_URL =HEAD+"/deposit/getDeposit";//获取账户余额
+    public final static String RECHARGE_DEPOSIT_URL = HEAD+"/deposit/doRechargemob";//充值余额
 
 }

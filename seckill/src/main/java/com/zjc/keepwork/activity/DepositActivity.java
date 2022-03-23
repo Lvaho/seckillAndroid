@@ -13,7 +13,9 @@ import android.widget.TextView;
 import com.zjc.keepwork.R;
 import com.zjc.keepwork.pojo.DepositVo;
 import com.zjc.keepwork.pojo.RespBean;
+import com.zjc.keepwork.service.IDepositService;
 import com.zjc.keepwork.service.IUserService;
+import com.zjc.keepwork.service.imp.DepositServiceImpl;
 import com.zjc.keepwork.service.imp.UserServiceImpl;
 import com.zjc.keepwork.util.MyApplication;
 
@@ -31,7 +33,7 @@ public class DepositActivity extends AppCompatActivity {
     TextView deposit;
     @BindView(R.id.recharge_button)
     Button recharge_button;
-    IUserService userService;
+    IDepositService depositService;
     Unbinder unbinder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,8 @@ public class DepositActivity extends AppCompatActivity {
     }
 
     private void initDeposit() {
-        userService = new UserServiceImpl(DepositActivity.this);
-        userService.findUserByCookie();
+       depositService = new DepositServiceImpl(DepositActivity.this);
+       depositService.findDepositByCookie();
     }
 
     @OnClick({R.id.deposit_back,R.id.recharge_button})
