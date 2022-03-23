@@ -38,34 +38,22 @@
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/search"
-                    android:id="@+id/main_search">
-                </ImageView>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp">
-                <ImageView
-                    android:id="@+id/main_team"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/team">
-                </ImageView>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp">
+
                 <ImageView
                     android:id="@+id/qrcode_scan"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/scancide">
-                </ImageView>
+                    android:src="@drawable/scancide"></ImageView>
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -98,9 +86,11 @@
                         android:background="#E1E1E1dd"
                         android:layout_gravity="bottom"/>
                 </androidx.cardview.widget.CardView>
-
             </FrameLayout>
-
+            <com.qweather.plugin.view.HorizonView
+                android:id="@+id/horizon_view"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="80dp"

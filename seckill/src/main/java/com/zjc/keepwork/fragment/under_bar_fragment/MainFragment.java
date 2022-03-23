@@ -1,13 +1,17 @@
 package com.zjc.keepwork.fragment.under_bar_fragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -20,6 +24,12 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.qweather.plugin.view.HeContent;
+import com.qweather.plugin.view.HorizonView;
+import com.qweather.plugin.view.LeftLargeView;
+import com.qweather.plugin.view.QWeatherConfig;
+import com.qweather.plugin.view.SuspendView;
 import com.xuexiang.xui.widget.textview.MarqueeTextView;
 import com.xuexiang.xui.widget.textview.marqueen.DisplayEntity;
 import com.youth.banner.Banner;
@@ -60,6 +70,8 @@ public class MainFragment extends Fragment implements AMapLocationListener {
     MarqueeTextView tv_marquee;
     @BindView(R.id.main_fl_fun)
     RecyclerView main_fl_fun;
+    @BindView(R.id.horizon_view)
+    HorizonView horizonView;
     private FunctionAdapter functionAdapter;
     private AMapLocationClient mLocationClient = null;//定位发起端
     private AMapLocationClientOption mLocationOption = null;//定位参数
@@ -113,8 +125,50 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),4);
         main_fl_fun.setAdapter(functionAdapter);
         main_fl_fun.setLayoutManager(gridLayoutManager);
+        initWeather();
         return view;
     }
+
+    private void initWeather() {
+        QWeatherConfig.init("dd007c2677d345e794fc3e28679405fd",MyApplication.getCity());
+        //取消默认背景
+        horizonView.setDefaultBack(true);
+        //设置布局的背景圆角角度，颜色，边框宽度，边框颜色
+        horizonView.setStroke(5,Color.BLUE,1,Color.BLUE);
+        //添加地址文字描述，第一个参数为文字大小，单位：sp ，第二个参数为文字颜色，默认白色
+        horizonView.addLocation(14, Color.WHITE);
+        //添加预警图标，参数为图标大小，单位：dp
+        horizonView.addAlarmIcon(14);
+        //添加预警文字
+        horizonView.addAlarmTxt(14);
+        //添加温度描述
+        horizonView.addTemp(14, Color.WHITE);
+        //添加天气图标
+        horizonView.addWeatherIcon(14);
+        //添加天气描述
+        horizonView.addCond(14, Color.WHITE);
+        //添加风向图标
+        horizonView.addWindIcon(14);
+        //添加风力描述
+        horizonView.addWind(14, Color.WHITE);
+        //添加文字：AQI
+        horizonView.addAqiText(14, Color.WHITE);
+        //添加空气质量描述
+        horizonView.addAqiQlty(14);
+        //添加空气质量数值描述
+        horizonView.addAqiNum(14);
+        //添加降雨图标
+        horizonView.addRainIcon(14);
+        //添加降雨描述
+        horizonView.addRainDetail(14, Color.WHITE);
+        //设置控件的对齐方式，默认居中
+        horizonView.setViewGravity(HeContent.GRAVITY_CENTER);
+        //设置控件的内边距，默认为0
+        horizonView.setViewPadding(10,10,10,10);
+        //显示控件
+        horizonView.show();
+    }
+
     public void initBanner(){
         List images=new ArrayList();
         images.add(R.drawable.main_bg1);
@@ -207,6 +261,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
                 aMapLocation.getAdCode();//地区编码
                 MyApplication.setCity(aMapLocation.getCity());
                 main_city.setText(aMapLocation.getCity());
+
             }
         } else {
             //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
@@ -241,4 +296,5 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         list.add(function7);
         return list;
     }
+
 }

@@ -7,6 +7,9 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import com.qweather.plugin.view.QWeatherConfig;
+
+
 public class MyApplication extends Application {
 
     private static SharedPreferences pref;  //共享偏好对象
@@ -39,6 +42,7 @@ public class MyApplication extends Application {
         editor=pref.edit();
         editor.apply();
         cookie=pref.getString("cookie","");
+
     }
 
     //用于在非UI线程类okhttp中显示Toast信息
