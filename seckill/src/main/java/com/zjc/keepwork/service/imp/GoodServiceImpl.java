@@ -48,7 +48,6 @@ public class GoodServiceImpl implements IGoodService {
             public void onResponse(Call call, Response response) throws IOException {
                 Log.i("zjc","请求成功");
                 List<GoodsVo> goodsVolist = ResponseUtil.dealListResponse(response.body().string(),GoodsVo.class);
-                ToastUtils.toast(goodsVolist.toString());
                 mainFragment.goodsVoCallBack(goodsVolist);
             }
         });

@@ -4,15 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amap.api.location.AMapLocation;
@@ -22,6 +26,7 @@ import com.amap.api.location.AMapLocationListener;
 import com.bumptech.glide.Glide;
 import com.qweather.plugin.view.HeContent;
 import com.qweather.plugin.view.HorizonView;
+import com.qweather.plugin.view.LeftLargeView;
 import com.qweather.plugin.view.QWeatherConfig;
 import com.xuexiang.xui.widget.textview.MarqueeTextView;
 import com.xuexiang.xui.widget.textview.marqueen.DisplayEntity;
@@ -55,7 +60,6 @@ public class MainFragment extends Fragment implements AMapLocationListener {
     public MainFragment(MainActivity mainactivity) {
         this.mainactivity = mainactivity;
     }
-    private GoodVoAdapter goodVoAdapter;
     //轮播图
     @BindView(R.id.imageBanner)
     Banner banner;
@@ -67,10 +71,13 @@ public class MainFragment extends Fragment implements AMapLocationListener {
     MarqueeTextView tv_marquee;
     @BindView(R.id.main_fl_fun)
     RecyclerView main_fl_fun;
-    @BindView(R.id.horizon_view)
-    HorizonView horizonView;
+    @BindView(R.id.ll_view)
+    LeftLargeView leftLargeView;
+    @BindView(R.id.main_seckill_activity)
+    RecyclerView main_seckill_activity;
     private IGoodService goodService;
     private FunctionAdapter functionAdapter;
+    private GoodVoAdapter goodVoAdapter;
     private AMapLocationClient mLocationClient = null;//定位发起端
     private AMapLocationClientOption mLocationOption = null;//定位参数
     Unbinder unbinder;
@@ -124,6 +131,11 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),4);
         main_fl_fun.setAdapter(functionAdapter);
         main_fl_fun.setLayoutManager(gridLayoutManager);
+
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext());
+        layoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
+        main_seckill_activity.setLayoutManager(layoutManager2);
+        main_seckill_activity.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
         initWeather();
         return view;
     }
@@ -136,42 +148,44 @@ public class MainFragment extends Fragment implements AMapLocationListener {
 
     private void initWeather() {
         QWeatherConfig.init("dd007c2677d345e794fc3e28679405fd",MyApplication.getCity());
-        //取消默认背景
-        horizonView.setDefaultBack(true);
-        //设置布局的背景圆角角度，颜色，边框宽度，边框颜色
-        horizonView.setStroke(5,Color.BLUE,1,Color.BLUE);
-        //添加地址文字描述，第一个参数为文字大小，单位：sp ，第二个参数为文字颜色，默认白色
-        horizonView.addLocation(14, Color.WHITE);
-        //添加预警图标，参数为图标大小，单位：dp
-        horizonView.addAlarmIcon(14);
-        //添加预警文字
-        horizonView.addAlarmTxt(14);
-        //添加温度描述
-        horizonView.addTemp(14, Color.WHITE);
-        //添加天气图标
-        horizonView.addWeatherIcon(14);
-        //添加天气描述
-        horizonView.addCond(14, Color.WHITE);
-        //添加风向图标
-        horizonView.addWindIcon(14);
-        //添加风力描述
-        horizonView.addWind(14, Color.WHITE);
-        //添加文字：AQI
-        horizonView.addAqiText(14, Color.WHITE);
-        //添加空气质量描述
-        horizonView.addAqiQlty(14);
-        //添加空气质量数值描述
-        horizonView.addAqiNum(14);
-        //添加降雨图标
-        horizonView.addRainIcon(14);
-        //添加降雨描述
-        horizonView.addRainDetail(14, Color.WHITE);
+        //左侧大布局右侧双布局控件
+        //获取左侧大布局
+        LinearLayout leftLayout = leftLargeView.getLeftLayout();
+        //获取右上布局
+        LinearLayout rightTopLayout = leftLargeView.getRightTopLayout();
+        //获取右下布局
+        LinearLayout rightBottomLayout = leftLargeView.getRightBottomLayout();
+        //设置布局的背景圆角角度（单位：dp），颜色，边框宽度（单位：px），边框颜色
+        leftLargeView.setStroke(5, Color.parseColor("#313a44"), 1, Color.BLACK);
+        //添加温度描述到左侧大布局
+        //第一个参数为需要加入的布局
+        //第二个参数为文字大小，单位：sp
+        //第三个参数为文字颜色，默认白色
+        leftLargeView.addTemp(leftLayout, 40, Color.WHITE);
+        //添加温度图标到右上布局，第二个参数为图标宽高（宽高1：1，单位：dp）
+        leftLargeView.addWeatherIcon(rightTopLayout, 14);
+        //添加文字AQI到右上布局
+        leftLargeView.addAqiText(rightTopLayout, 14);
+        //添加空气质量到右上布局
+        leftLargeView.addAqiQlty(rightTopLayout, 14);
+        //添加空气质量数值到右上布局
+        leftLargeView.addAqiNum(rightTopLayout, 14);
+        //添加地址信息到右上布局
+        leftLargeView.addLocation(rightTopLayout, 14, Color.WHITE);
+        //添加天气描述到右下布局
+        leftLargeView.addCond(rightBottomLayout, 14, Color.WHITE);
+        //添加风向图标到右下布局
+        leftLargeView.addWindIcon(rightBottomLayout, 14);
+        //添加风力描述到右下布局
+        leftLargeView.addWind(rightBottomLayout, 14, Color.WHITE);
+        //添加降雨图标到右下布局
+        leftLargeView.addRainIcon(rightBottomLayout, 14);
+        //添加降雨描述到右下布局
+        leftLargeView.addRainDetail(rightBottomLayout, 14, Color.WHITE);
         //设置控件的对齐方式，默认居中
-        horizonView.setViewGravity(HeContent.GRAVITY_CENTER);
-        //设置控件的内边距，默认为0
-        horizonView.setViewPadding(10,10,10,10);
-        //显示控件
-        horizonView.show();
+        leftLargeView.setViewGravity(HeContent.GRAVITY_LEFT);
+        //显示布局
+        leftLargeView.show();
     }
 
     public void initBanner(){
@@ -302,8 +316,9 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         return list;
     }
     public void goodsVoCallBack(List<GoodsVo> list){
-        goodVoAdapter = new GoodVoAdapter();
-        goodVoAdapter.GenerateAllGoodsVo(list);
-
+        getActivity().runOnUiThread(() -> {
+            goodVoAdapter=new GoodVoAdapter(list);
+            main_seckill_activity.setAdapter(goodVoAdapter);
+        });
     }
 }

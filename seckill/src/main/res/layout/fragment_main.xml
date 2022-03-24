@@ -86,10 +86,10 @@
                         android:layout_gravity="bottom"/>
                 </androidx.cardview.widget.CardView>
             </FrameLayout>
-            <com.qweather.plugin.view.HorizonView
-                android:id="@+id/horizon_view"
+            <com.qweather.plugin.view.LeftLargeView
+                android:id="@+id/ll_view"
                 android:layout_width="match_parent"
-                android:layout_height="60dp" />
+                android:layout_height="60dp"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -97,7 +97,7 @@
             </androidx.recyclerview.widget.RecyclerView>
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="265dp"
+                android:layout_height="600dp"
                 android:layout_margin="2dp"
                 app:cardBackgroundColor="@color/white">
                 <LinearLayout
@@ -149,13 +149,13 @@
                             </ImageView>
                         </LinearLayout>
                     </LinearLayout>
+
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/main_seckill_activity"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/main_tuijian_tasks">
+                        android:layout_height="match_parent">
                     </androidx.recyclerview.widget.RecyclerView>
                 </LinearLayout>
-
             </androidx.cardview.widget.CardView>
             <TextView
                 android:layout_width="wrap_content"
