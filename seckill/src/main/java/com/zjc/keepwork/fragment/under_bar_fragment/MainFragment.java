@@ -1,7 +1,5 @@
 package com.zjc.keepwork.fragment.under_bar_fragment;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,12 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amap.api.location.AMapLocation;
@@ -24,22 +20,22 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 import com.qweather.plugin.view.HeContent;
 import com.qweather.plugin.view.HorizonView;
-import com.qweather.plugin.view.LeftLargeView;
 import com.qweather.plugin.view.QWeatherConfig;
-import com.qweather.plugin.view.SuspendView;
 import com.xuexiang.xui.widget.textview.MarqueeTextView;
 import com.xuexiang.xui.widget.textview.marqueen.DisplayEntity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 import com.zjc.keepwork.R;
 import com.zjc.keepwork.activity.DepositActivity;
-import com.zjc.keepwork.activity.DepositDetailActivity;
 import com.zjc.keepwork.activity.MainActivity;
 import com.zjc.keepwork.adapter.FunctionAdapter;
+import com.zjc.keepwork.adapter.GoodVoAdapter;
 import com.zjc.keepwork.adapter.pojo.Function;
+import com.zjc.keepwork.adapter.pojo.GoodsVo;
+import com.zjc.keepwork.service.IGoodService;
+import com.zjc.keepwork.service.imp.GoodServiceImpl;
 import com.zjc.keepwork.util.MyApplication;
 
 import java.text.SimpleDateFormat;
@@ -55,10 +51,11 @@ import com.zjc.keepwork.activity.CommunicationActivity;
 
 
 public class MainFragment extends Fragment implements AMapLocationListener {
-    MainActivity activity;
-    public MainFragment(MainActivity activity) {
-        this.activity = activity;
+    MainActivity mainactivity;
+    public MainFragment(MainActivity mainactivity) {
+        this.mainactivity = mainactivity;
     }
+    private GoodVoAdapter goodVoAdapter;
     //轮播图
     @BindView(R.id.imageBanner)
     Banner banner;
@@ -72,6 +69,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
     RecyclerView main_fl_fun;
     @BindView(R.id.horizon_view)
     HorizonView horizonView;
+    private IGoodService goodService;
     private FunctionAdapter functionAdapter;
     private AMapLocationClient mLocationClient = null;//定位发起端
     private AMapLocationClientOption mLocationOption = null;//定位参数
@@ -94,6 +92,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         initBanner();
         initLoc();
         initMarqueeTextView();
+        initSeckillGoods();
         List<Function> list=initFun();
         functionAdapter=new FunctionAdapter(R.layout.fun_viewholder,list);
         functionAdapter.setOnItemClickListener(itemId -> {
@@ -127,6 +126,12 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         main_fl_fun.setLayoutManager(gridLayoutManager);
         initWeather();
         return view;
+    }
+
+    private void initSeckillGoods() {
+        goodService = new GoodServiceImpl(null,this);
+        goodService.getGoodsVo();
+
     }
 
     private void initWeather() {
@@ -296,5 +301,9 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         list.add(function7);
         return list;
     }
+    public void goodsVoCallBack(List<GoodsVo> list){
+        goodVoAdapter = new GoodVoAdapter();
+        goodVoAdapter.GenerateAllGoodsVo(list);
 
+    }
 }

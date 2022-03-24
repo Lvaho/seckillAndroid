@@ -1,4 +1,4 @@
 package com.zjc.keepwork.adapter;
 
-public class SeckillAdapter {
+public class GoodVoAdapter {
 }

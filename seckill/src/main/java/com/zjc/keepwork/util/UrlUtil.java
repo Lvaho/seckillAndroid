@@ -7,5 +7,6 @@ public class UrlUtil {
     public final static String REGISTER_URL = HEAD+"/user/doRegister";//注册
     public final static String GET_DEPOSIT_URL =HEAD+"/deposit/getDeposit";//获取账户余额
     public final static String RECHARGE_DEPOSIT_URL = HEAD+"/deposit/doRechargemob";//充值余额
+    public final static String GET_GOODSVO_URL =HEAD+"/goods/getGoods";//获取秒杀商品
 
 }
