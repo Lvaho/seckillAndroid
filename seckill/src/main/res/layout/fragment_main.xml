@@ -48,12 +48,11 @@
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp">
-
                 <ImageView
                     android:id="@+id/qrcode_scan"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/scancide"></ImageView>
+                    android:src="@drawable/scancide"/>
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -96,6 +95,68 @@
                 android:layout_height="80dp"
                 android:id="@+id/main_fl_fun">
             </androidx.recyclerview.widget.RecyclerView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="265dp"
+                android:layout_margin="2dp"
+                app:cardBackgroundColor="@color/white">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/tuijian_task"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp">
+                        </ImageView>
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="推荐活动"
+                            android:layout_gravity="center"
+                            android:textSize="15sp"
+                            android:textColor="#000000">
+                        </TextView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5">
+                        </TextView>
+                        <LinearLayout
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:id="@+id/tuijian_task_ll">
+                            <TextView
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="更多"
+                                android:textSize="15sp"
+                                android:textColor="@color/red">
+                            </TextView>
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/right_point">
+                            </ImageView>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/main_tuijian_tasks">
+                    </androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,7 +164,6 @@
                 android:textSize="15sp"
                 android:textColor="@color/white"
                 android:layout_gravity="center">
-
             </TextView>
         </LinearLayout>
     </com.xuexiang.xui.widget.XUIObservableScrollView>
