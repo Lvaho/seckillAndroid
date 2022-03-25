@@ -143,7 +143,6 @@ public class MainFragment extends Fragment implements AMapLocationListener {
     private void initSeckillGoods() {
         goodService = new GoodServiceImpl(null,this);
         goodService.getGoodsVo();
-
     }
 
     private void initWeather() {

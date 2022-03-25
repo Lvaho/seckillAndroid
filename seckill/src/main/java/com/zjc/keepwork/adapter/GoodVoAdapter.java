@@ -21,13 +21,14 @@ import com.zjc.keepwork.adapter.pojo.GoodsVo;
 import com.zjc.keepwork.util.DateUtil;
 import com.zjc.keepwork.util.MyApplication;
 
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 
 public class GoodVoAdapter extends BaseQuickAdapter<GoodsVo, BaseViewHolder> {
 
-
+    private Date date =new Date();
     public GoodVoAdapter(@Nullable List<GoodsVo> data) {
         super(R.layout.seckill_viewholder, data);
     }
@@ -37,6 +38,13 @@ public class GoodVoAdapter extends BaseQuickAdapter<GoodsVo, BaseViewHolder> {
         helper.setText(R.id.seckill_detail_tv,item.getGoodsDetail());
         helper.setText(R.id.seckill_endtime_tv,"结束时间:"+DateUtil.formdate(item.getEndDate()));
         helper.setText(R.id.seckill_stockcount,"库存："+String.valueOf(item.getStockCount()));
+        if (item.getStartDate().after(date)){
+            helper.setImageResource(R.id.seckill_status_img,R.drawable.notstart);
+        }else if (item.getStartDate().after(date)&item.getEndDate().before(date)){
+            helper.setImageResource(R.id.seckill_status_img,R.drawable.doing);
+        }else if (item.getEndDate().before(date)){
+            helper.setImageResource(R.id.seckill_status_img,R.drawable.end);
+        }
         helper.getView(R.id.seckill_deatil_ll).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

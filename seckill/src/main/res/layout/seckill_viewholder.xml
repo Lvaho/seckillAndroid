@@ -35,7 +35,7 @@
                     android:textSize="15sp" />
 
                 <com.xuexiang.xui.widget.button.shadowbutton.ShadowImageView
-                    android:id="@+id/task_status_img"
+                    android:id="@+id/seckill_status_img"
                     android:layout_width="59dp"
                     android:layout_height="54dp"
                     android:layout_toRightOf="@id/seckill_detail_tv"
