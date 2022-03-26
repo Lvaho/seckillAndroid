@@ -32,13 +32,9 @@ public class SeckillServiceImpl implements ISeckillService {
     @Override
     public void getSeckillPath(String goodsid) {
         OkHttpClient okHttpClient=new OkHttpClient();
-        RequestBody requestBody= new FormBody.Builder()
-                .add("goodsId",String.valueOf(goodsid))
-                .build();
         Request request=new Request.Builder()
-                .url(UrlUtil.GET_SECKILL_PATH)
+                .url(UrlUtil.GET_SECKILL_PATH(goodsid))
                 .addHeader("Cookie","userTicket="+ MyApplication.getCookie())
-                .put(requestBody)
                 .get()
                 .build();
         Call call = okHttpClient.newCall(request);
