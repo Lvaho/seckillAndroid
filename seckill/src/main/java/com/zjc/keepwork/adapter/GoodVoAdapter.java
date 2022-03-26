@@ -21,6 +21,8 @@ import com.zjc.keepwork.adapter.pojo.GoodsVo;
 import com.zjc.keepwork.util.DateUtil;
 import com.zjc.keepwork.util.MyApplication;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -51,12 +53,18 @@ public class GoodVoAdapter extends BaseQuickAdapter<GoodsVo, BaseViewHolder> {
                 Log.i("zjc",item.getGoodsName());
                 Intent intent=new Intent(MyApplication.getContext(), SeckillDetailActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String startdate = formatter.format(item.getStartDate());
+                String enddate =formatter.format(item.getEndDate());
                 Bundle bundle=new Bundle();
-                //bundle.putString("picture",item.getPicture());
-                //bundle.putString("taskId",item.getId());
-                //bundle.putString("taskItemId",item.getLostEventId());
-                //bundle.putString("taskName",item.getTasName());
-                //bundle.putString("coordinate",item.getCoordinate());
+                bundle.putString("id",String.valueOf(item.getId()));
+                bundle.putString("goodsname",item.getGoodsName());
+                bundle.putString("goodsprice",String.valueOf(item.getGoodsPrice()));
+                bundle.putString("seckillprice",String.valueOf(item.getSeckillPrice()));
+                bundle.putString("starttime",startdate);
+                bundle.putString("endtime",enddate);
+                bundle.putString("goodsdetail",item.getGoodsDetail());
+                bundle.putString("stockcount",String.valueOf(item.getStockCount()));
                 intent.putExtras(bundle);
                 MyApplication.getContext().startActivity(intent);
             }
