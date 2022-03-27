@@ -82,7 +82,7 @@ public class SeckillDetailActivity extends AppCompatActivity {
                 seckill_detail_seckillprice_tv.setText(seckillprice);
                 if (date.after(endtime)){
                     seckill_detail_btn.setText("活动已经结束，下次请早");
-                    seckill_getdetail_btn.setEnabled(true);
+
                 } else if (date.after(starttime)&date.before(endtime)){
                     seckill_detail_btn.setEnabled(true);
                 }else if (date.before(starttime)){
