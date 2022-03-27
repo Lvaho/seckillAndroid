@@ -14,6 +14,7 @@ import com.xuexiang.xutil.tip.ToastUtils;
 import com.zjc.keepwork.R;
 import com.zjc.keepwork.service.ISeckillService;
 import com.zjc.keepwork.service.imp.SeckillServiceImpl;
+import com.zjc.keepwork.util.MyApplication;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,6 +43,8 @@ public class SeckillDetailActivity extends AppCompatActivity {
     TextView seckill_detail_seckillprice_tv;
     @BindView(R.id.seckill_detail_btn)
     Button seckill_detail_btn;
+    @BindView(R.id.seckill_getdetail_btn)
+    Button seckill_getdetail_btn;
     ISeckillService seckillService;
     Unbinder unbinder;
     Date date =new Date();
@@ -79,6 +82,7 @@ public class SeckillDetailActivity extends AppCompatActivity {
                 seckill_detail_seckillprice_tv.setText(seckillprice);
                 if (date.after(endtime)){
                     seckill_detail_btn.setText("活动已经结束，下次请早");
+                    seckill_getdetail_btn.setEnabled(true);
                 } else if (date.after(starttime)&date.before(endtime)){
                     seckill_detail_btn.setEnabled(true);
                 }else if (date.before(starttime)){
@@ -101,13 +105,17 @@ public class SeckillDetailActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.seckill_detail_btn})
+    @OnClick({R.id.seckill_detail_btn,R.id.seckill_getdetail_btn})
     public void viewOnclick(View view){
         switch (view.getId()){
             case R.id.seckill_detail_btn:
                 doSeckill();
                 break;
-
+            case R.id.seckill_getdetail_btn:
+                Bundle bundle = getIntent().getExtras();
+                String goodsid = bundle.getString("id");
+                seckillService.getResult(goodsid);
+                break;
         }
     }
 
@@ -116,6 +124,33 @@ public class SeckillDetailActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String goodsid = bundle.getString("id");
         seckillService.getSeckillPath(goodsid);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                seckill_detail_btn.setEnabled(false);
+                seckill_detail_btn.setVisibility(View.INVISIBLE);
+                ToastUtils.toast("为您查询秒杀结果中");
+                CountDownTimer timer = new CountDownTimer(1000, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        seckill_getdetail_btn.setText(String.format("还剩(%d)秒可以查询结果",millisUntilFinished/1000));
+                    }
+                    @Override
+                    public void onFinish() {
+                        seckill_getdetail_btn.setText("立刻查询");
+                        seckill_getdetail_btn.setEnabled(true);
+                    }
+                };
+                timer.start();
+            }
+        });
     }
 
+    public void getResultCallBack(String orderid){
+        Intent intent=new Intent(SeckillDetailActivity.this, OrderDetailActivity.class);
+        Bundle bundle=new Bundle();
+        bundle.putString("orderid",orderid);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 }

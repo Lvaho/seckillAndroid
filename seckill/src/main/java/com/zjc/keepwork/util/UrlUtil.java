@@ -14,5 +14,10 @@ public class UrlUtil {
     public static String doSeckill(String path){
         return HEAD+"/seckill/"+path+"/doSeckill";
     }
+    public static String GET_RESULT_URL(String goodsId){
+        return HEAD+"/seckill/result?goodsId="+goodsId;
+    }
+    public final static String PAY_ORDER_URL = HEAD+"/order/payorder";
+    public static String GET_ORDER_DETAIL_URL(String orderid){return HEAD+"/order/detail?orderId="+orderid;}
 
 }

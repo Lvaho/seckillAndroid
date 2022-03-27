@@ -29,6 +29,8 @@ public class SeckillServiceImpl implements ISeckillService {
         this.seckillDetailActivity=seckillDetailActivity;
     }
 
+
+
     @Override
     public void getSeckillPath(String goodsid) {
         OkHttpClient okHttpClient=new OkHttpClient();
@@ -75,9 +77,38 @@ public class SeckillServiceImpl implements ISeckillService {
             public void onResponse(Call call, Response response) throws IOException {
                 Log.i("zjc","请求成功");
                 RespBean respBean = ResponseUtil.dealresponse(response.body().string(), RespBean.class);
-                ToastUtils.toast(respBean.getMessage()+respBean.getCode());
+                ToastUtils.toast(respBean.getMessage());
             }
         });
+    }
 
+    public void getResult(String goodsid){
+        OkHttpClient okHttpClient= new OkHttpClient();
+        RequestBody requestBody =new FormBody.Builder()
+                .add("goodsId",goodsid)
+                .build();
+        Request request=new Request.Builder()
+                .url(UrlUtil.GET_RESULT_URL(goodsid))
+                .addHeader("Cookie","userTicket="+ MyApplication.getCookie())
+                .get()
+                .build();
+        Call call =okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.i("zjc",e.toString());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.i("zjc","请求成功");
+                RespBean respBean = ResponseUtil.dealresponse(response.body().string(), RespBean.class);
+                ToastUtils.toast(respBean.getMessage()+respBean.getCode());
+                Integer respBeanObj = Integer.parseInt((String) respBean.getObj());
+                if (respBeanObj != -1 & respBeanObj != 0){
+                    seckillDetailActivity.getResultCallBack(String.valueOf(respBeanObj));
+                }
+            }
+        });
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.SeckillDetailActivity"
+    tools:context=".activity.OrderDetailActivity"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:src="@drawable/back1"
-                android:id="@+id/deposit_recharge_back"/>
+                android:id="@+id/order_detail_back"/>
             <TextView
                 android:layout_width="333dp"
                 android:layout_height="match_parent"
@@ -46,74 +46,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="商品名称"
-            android:id="@+id/seckill_detail_goodsname_tv"/>
+            android:id="@+id/order_detail_goodsname_tv"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="商品价格" />
+            android:text="订单价格" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="商品价格"
-            android:id="@+id/seckill_detali_goodsprice_tv"/>
+            android:text="订单价格"
+            android:id="@+id/order_detali_goodsprice_tv"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="秒杀价格" />
+            android:text="下单时间"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="秒杀价格"
-            android:id="@+id/seckill_detali_seckillprice_tv"/>
+            android:text="下单时间"
+            android:id="@+id/order_deatil_ordertime_tv"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="秒杀开始时间"/>
+            android:text="订单状态"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="秒杀开始时间"
-            android:id="@+id/seckill_deatil_starttime_tv"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="秒杀结束时间"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="秒杀结束时间"
-            android:id="@+id/seckill_detail_endtime_tv"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="商品详情"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="商品详情"
-            android:id="@+id/seckill_detail_goodsdetail_tv"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="库存数量"
-            android:id="@+id/seckill_detail_stockcount_tv"/>
+            android:text="订单状态"
+            android:id="@+id/order_detail_orderstatus_tv"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:orientation="vertical">
+        android:gravity="bottom">
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="立刻秒杀"
-            android:id="@+id/seckill_detail_btn"
-            android:enabled="false"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="查询结果"
-            android:id="@+id/seckill_getdetail_btn"
+            android:text="立刻支付"
+            android:id="@+id/order_detail_btn"
             android:enabled="false"/>
     </LinearLayout>
 </LinearLayout>
