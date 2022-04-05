@@ -10,6 +10,7 @@ import com.zjc.keepwork.fragment.under_bar_fragment.MainFragment;
 import com.zjc.keepwork.fragment.under_bar_fragment.SeckillFragment;
 import com.zjc.keepwork.pojo.RespBean;
 import com.zjc.keepwork.service.IGoodService;
+import com.zjc.keepwork.util.MyApplication;
 import com.zjc.keepwork.util.ResponseUtil;
 import com.zjc.keepwork.util.UrlUtil;
 
@@ -43,6 +44,7 @@ public class GoodServiceImpl implements IGoodService {
         OkHttpClient okHttpClient=new OkHttpClient();
         Request request=new Request.Builder()
                 .url(UrlUtil.GET_GOODSVO_URL)
+                .addHeader("Cookie","userTicket="+ MyApplication.getCookie())
                 .build();
         Call call = okHttpClient.newCall(request);
         call.enqueue(new Callback() {
@@ -54,9 +56,12 @@ public class GoodServiceImpl implements IGoodService {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Log.i("zjc","请求成功");
-                List<GoodsVo> goodsVolist = ResponseUtil.dealListResponse(response.body().string(),GoodsVo.class);
+                RespBean respBean = ResponseUtil.dealresponse(response.body().string(),RespBean.class);
+                if (respBean.getCode()==200 || respBean.getCode()==500704){
+                List<GoodsVo> goodsVolist = ResponseUtil.dealListResponse(respBean.getObj().toString(),GoodsVo.class);
                 goodsVolist.removeIf(goodsVo -> goodsVo.getEndDate().before(date));
-                mainFragment.goodsVoCallBack(goodsVolist);
+                mainFragment.goodsVoCallBack(goodsVolist,respBean.getCode());
+                }
             }
         });
     }
@@ -65,6 +70,7 @@ public class GoodServiceImpl implements IGoodService {
         OkHttpClient okHttpClient=new OkHttpClient();
         Request request=new Request.Builder()
                 .url(UrlUtil.GET_GOODSVO_URL)
+                .addHeader("Cookie","userTicket="+ MyApplication.getCookie())
                 .build();
         Call call = okHttpClient.newCall(request);
         call.enqueue(new Callback() {
@@ -76,8 +82,11 @@ public class GoodServiceImpl implements IGoodService {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Log.i("zjc","请求成功");
-                List<GoodsVo> goodsVolist = ResponseUtil.dealListResponse(response.body().string(),GoodsVo.class);
-                seckillFragment.goodVoCallBack(goodsVolist);
+                RespBean respBean = ResponseUtil.dealresponse(response.body().string(),RespBean.class);
+                if (respBean.getCode()==200 || respBean.getCode()==500704){
+                List<GoodsVo> goodsVolist = ResponseUtil.dealListResponse(respBean.getObj().toString(),GoodsVo.class);
+                seckillFragment.goodVoCallBack(goodsVolist,respBean.getCode());
+                }
             }
         });
     }

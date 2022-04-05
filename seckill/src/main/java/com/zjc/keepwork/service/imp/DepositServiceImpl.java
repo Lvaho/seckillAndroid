@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.zjc.keepwork.activity.DepositActivity;
 import com.zjc.keepwork.activity.DepositRechargeActivity;
+import com.zjc.keepwork.fragment.under_bar_fragment.MessageFragment;
 import com.zjc.keepwork.pojo.DepositVo;
 import com.zjc.keepwork.pojo.OrderInfo;
 import com.zjc.keepwork.pojo.RespBean;
@@ -31,8 +32,12 @@ public class DepositServiceImpl implements IDepositService {
     public DepositServiceImpl(DepositRechargeActivity depositRechargeActivity){
         this.depositRechargeActivity=depositRechargeActivity;
     }
+    private MessageFragment messageFragment;
+    public DepositServiceImpl(MessageFragment messageFragment){
+        this.messageFragment=messageFragment;
+    }
     @Override
-    public void findDepositByCookie() {
+    public void findDepositByCookieinActivity() {
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(UrlUtil.GET_DEPOSIT_URL)
@@ -65,7 +70,35 @@ public class DepositServiceImpl implements IDepositService {
         });
 
     }
+    @Override
+    public void findDepositByCookieinFragment() {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(UrlUtil.GET_DEPOSIT_URL)
+                .addHeader("Cookie"," userTicket="+ MyApplication.getCookie())
+                .get()
+                .build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.i("zjc","请求失败");
+            }
 
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.i("zjc","请求成功");
+                RespBean respBean = ResponseUtil.dealresponse(response.body().string(),RespBean.class);
+                if (respBean.getCode()==200){
+                    DepositVo depositVo = (DepositVo) ResponseUtil.dealresponse(respBean.getObj().toString(), DepositVo.class);
+                    messageFragment.depositcallback(depositVo);
+                }else {
+                    Log.i("zjc","出现问题");
+                }
+            }
+        });
+
+    }
     @Override
     public void createOrderAndPay(BigDecimal chargenum) {
         OkHttpClient okHttpClient=new OkHttpClient();

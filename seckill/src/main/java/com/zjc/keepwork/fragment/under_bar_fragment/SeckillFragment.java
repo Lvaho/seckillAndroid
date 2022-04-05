@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.zjc.keepwork.R;
 import com.zjc.keepwork.activity.MainActivity;
 import com.zjc.keepwork.adapter.GoodVoAdapter;
+import com.zjc.keepwork.adapter.UNGoodVoAdapter;
 import com.zjc.keepwork.adapter.pojo.GoodsVo;
 import com.zjc.keepwork.service.IGoodService;
 import com.zjc.keepwork.service.imp.GoodServiceImpl;
@@ -32,6 +33,7 @@ public class SeckillFragment extends Fragment {
     }
     Unbinder unbinder;
     private GoodVoAdapter goodVoAdapter;
+    private UNGoodVoAdapter ungoodVoAdapter;
     @BindView(R.id.fragment_seckill_activity)
     RecyclerView fragment_seckill_activity;
     @Override
@@ -49,10 +51,16 @@ public class SeckillFragment extends Fragment {
         goodService = new GoodServiceImpl(this);
         goodService.getAllGoodsVo();
     }
-    public void goodVoCallBack(List<GoodsVo> list){
+    public void goodVoCallBack(List<GoodsVo> list,Integer code){
         getActivity().runOnUiThread(() -> {
-            goodVoAdapter=new GoodVoAdapter(list);
-            fragment_seckill_activity.setAdapter(goodVoAdapter);
+            if (code==200){
+                goodVoAdapter=new GoodVoAdapter(list);
+                fragment_seckill_activity.setAdapter(goodVoAdapter);
+            }else {
+                ungoodVoAdapter=new UNGoodVoAdapter(list);
+                fragment_seckill_activity.setAdapter(ungoodVoAdapter);
+            }
+
         });
     }
 

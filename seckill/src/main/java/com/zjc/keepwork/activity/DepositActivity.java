@@ -7,18 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zjc.keepwork.R;
 import com.zjc.keepwork.pojo.DepositVo;
-import com.zjc.keepwork.pojo.RespBean;
 import com.zjc.keepwork.service.IDepositService;
-import com.zjc.keepwork.service.IUserService;
 import com.zjc.keepwork.service.imp.DepositServiceImpl;
-import com.zjc.keepwork.service.imp.UserServiceImpl;
-import com.zjc.keepwork.util.MyApplication;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,7 +43,7 @@ public class DepositActivity extends AppCompatActivity {
 
     private void initDeposit() {
        depositService = new DepositServiceImpl(DepositActivity.this);
-       depositService.findDepositByCookie();
+       depositService.findDepositByCookieinActivity();
     }
 
     @OnClick({R.id.deposit_back,R.id.recharge_button,R.id.refresh_deposit_button})

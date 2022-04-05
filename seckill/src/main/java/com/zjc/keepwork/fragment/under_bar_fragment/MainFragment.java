@@ -34,9 +34,11 @@ import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 import com.zjc.keepwork.R;
 import com.zjc.keepwork.activity.DepositActivity;
+import com.zjc.keepwork.activity.DepositRechargeActivity;
 import com.zjc.keepwork.activity.MainActivity;
 import com.zjc.keepwork.adapter.FunctionAdapter;
 import com.zjc.keepwork.adapter.GoodVoAdapter;
+import com.zjc.keepwork.adapter.UNGoodVoAdapter;
 import com.zjc.keepwork.adapter.pojo.Function;
 import com.zjc.keepwork.adapter.pojo.GoodsVo;
 import com.zjc.keepwork.service.IGoodService;
@@ -83,6 +85,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
     Unbinder unbinder;
     private SeckillFragment seckillFragment;
     private MineFragment mineFragment;
+    private UNGoodVoAdapter ungoodVoAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -124,7 +127,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
             }
             //打开与客服的聊天界面
             if ("8".equals(itemId)){
-                Intent intent=new Intent(getActivity(), CommunicationActivity.class);
+                Intent intent=new Intent(getActivity(), DepositRechargeActivity.class);
                 startActivity(intent);
             }
         });
@@ -303,7 +306,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         Function function4=new Function(5,"我的余额");
         Function function5=new Function(6,"秒杀活动");
         Function function6=new Function(7,"个人中心");
-        Function function7=new Function(8,"联系客服");
+        Function function7=new Function(8,"余额充值");
 //        list.add(function);
 //        list.add(function1);
 //        list.add(function2);
@@ -314,10 +317,15 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         list.add(function7);
         return list;
     }
-    public void goodsVoCallBack(List<GoodsVo> list){
+    public void goodsVoCallBack(List<GoodsVo> list,Integer code){
         getActivity().runOnUiThread(() -> {
+            if (code==200){
             goodVoAdapter=new GoodVoAdapter(list);
-            main_seckill_activity.setAdapter(goodVoAdapter);
+            main_seckill_activity.setAdapter(goodVoAdapter);}
+            if (code==500704){
+                ungoodVoAdapter = new UNGoodVoAdapter(list);
+                main_seckill_activity.setAdapter(ungoodVoAdapter);
+            }
         });
     }
 }
