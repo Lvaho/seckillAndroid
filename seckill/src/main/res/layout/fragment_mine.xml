@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="93dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/beaty_head001"
+                    android:src="@drawable/head01"
                     app:riv_oval="true" />
 
             </androidx.cardview.widget.CardView>
@@ -119,7 +119,7 @@
                                 android:id="@+id/tab_work_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="修改头像"
+                                android:text="扫二维码"
                                 android:textSize="12sp"
                                 android:textColor="@color/black" />
                         </LinearLayout>
@@ -147,30 +147,7 @@
                                 android:textColor="#272727"
                                 android:textSize="12sp" />
                         </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/change_name_ll"
-                            android:layout_width="0dp"
-                            android:layout_height="fill_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
 
-                            <ImageButton
-                                android:id="@+id/change_name"
-                                android:layout_width="25dp"
-                                android:layout_height="35dp"
-                                android:background="#00000000"
-                                android:clickable="false"
-                                android:scaleType="centerInside"
-                                android:src="@drawable/change_name" />
-                            <TextView
-                                android:id="@+id/tab_mine_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="修改邮箱"
-                                android:textColor="#272727"
-                                android:textSize="12sp" />
-                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -310,21 +287,10 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="通知详情"
-                        android:textColor="@color/black"
-                        >
+                        android:text="余额充值"
+                        android:textColor="@color/black">
                     </TextView>
-                    <com.xuexiang.xui.widget.button.switchbutton.SwitchButton
-                        android:layout_width="40dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        app:swb_animationDuration="300"
-                        app:swb_backDrawable="@drawable/ios_back_drawable"
-                        app:swb_thumbDrawable="@drawable/ios_thumb_selector"
-                        android:id="@+id/mine_notice_switch"
-                        >
 
-                    </com.xuexiang.xui.widget.button.switchbutton.SwitchButton>
                 </LinearLayout>
                 <ImageView
                     android:layout_width="match_parent"
@@ -357,7 +323,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="消息中心"
+                        android:text="秒杀商品"
                         android:textColor="@color/black"
                         >
                     </TextView>
@@ -370,82 +336,15 @@
                     android:background="@color/gray"
                     >
                 </ImageView>
-                <!--消息提醒-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/notify_item"
-                    android:layout_marginTop="10dp"
-                    android:paddingRight="5dp"
-                    android:background="@color/white"
-                    >
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/message_item001"
-                        />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|left"
-                        android:text="消息提醒"
-                        android:textColor="@color/black"
-                        >
-                    </TextView>
-                    <com.xuexiang.xui.widget.button.switchbutton.SwitchButton
-                        android:layout_width="40dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        app:swb_animationDuration="300"
-                        android:layout_marginRight="10dp"
-                        app:swb_backDrawable="@drawable/ios_back_drawable"
-                        app:swb_thumbDrawable="@drawable/ios_thumb_selector"
-                        android:id="@+id/mine_message_switch">
 
-                    </com.xuexiang.xui.widget.button.switchbutton.SwitchButton>
-                </LinearLayout>
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginLeft="39dp"
-                    android:background="@color/gray"
-                    >
+                    android:background="@color/gray">
                 </ImageView>
 
-                <!--清除缓存-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/my_clean_ll"
-                    android:layout_marginTop="10dp"
-                    android:paddingRight="5dp"
-                    android:background="@color/white"
-                    >
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/clear_cache001"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:text="清理缓存"
-                        android:textColor="@color/black"
-                        >
-                    </TextView>
-                </LinearLayout>
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
